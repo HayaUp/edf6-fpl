@@ -7,6 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <script>
+
+        window.addEventListener(
+            "DOMContentLoaded",
+            () => {
+                console.log(ReadCSVFile("../phrase_group1.csv"));
+            }
+        );
+
+        function ReadCSVFile(file_path) {
+            fetch(file_path)
+            .then(response => response.text())
+            .then(data => {
+                return data;
+            });
+        }
+    </script>
 </body>
 </html>
