@@ -8,5 +8,49 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    <main>
+        <section>
+            <h2>検索条件</h2>
+            <div>
+                <input type="search" id="SearchWord" placeholder="検索したい語句を入力">
+                <button id="SearchButton">検索</button>
+            </div>
+            <div>
+                <label>
+                    種類1
+                    <select id="FixedPhraseGroup1">
+                        <option value="0"></option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>
+                    種類2
+                    <select id="FixedPhraseGroup2" disabled>
+                        <option value="0"></option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" id="HasRangerVoice">
+                    レンジャーの声付き定型文
+                    <span class="material-icons">volume_up</span>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" id="HasWingDiverVoice">
+                    ウィングダイバーの声付き定型文
+                    <span class="material-icons">volume_up</span>
+                </label>
+            </div>
+        </section>
+        <section>
+            <h2>検索結果</h2>
+            <div id="SearchResult"></div>
+            <div id="FixedPhrase"></div>
+        </section>
+    </main>
 </body>
 </html>
