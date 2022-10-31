@@ -15,7 +15,7 @@ class FixedPhraseGroup1 {
     */
     async ReadItems() {
         try {
-            const response = await CSVReader.Read(FIXED_PHRASE_GROUP1_PATH);
+            const response = await CSVReader.Read(this.CSV_FILE_PATH);
             return CSVReader.ConvertCSVToCSVLines(response);
         }
         catch(error) {
