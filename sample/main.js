@@ -3,9 +3,11 @@
 window.addEventListener("DOMContentLoaded", () => {
     const fpg1 = new FixedPhraseGroup1();
     const fpg2 = new FixedPhraseGroup2();
+    const fp = new FixedPhrase();
 
     const fpg1_element = document.getElementById("FixedPhraseGroup1");
     const fpg2_element = document.getElementById("FixedPhraseGroup2");
+    const fp_element = document.getElementById("FixedPhrase");
 
     fpg1_element.addEventListener("change", (e) => {
         fpg2_element.disabled = e.target.value == 0;
@@ -21,4 +23,5 @@ window.addEventListener("DOMContentLoaded", () => {
                 item.style.display = "none";
             }
         }
-    });});
+    });
+});
