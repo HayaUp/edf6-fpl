@@ -37,8 +37,8 @@ class FixedPhrase {
             const fp = this.ConvertCSVToObject(item);
             const div = this.CreateFixedPhraseElement(fp);
 
-            this.AddHasVoiceElement(div, div.dataset.has_ranger_voice);
-            this.AddHasVoiceElement(div, div.dataset.has_wingdiver_voice);
+            this.AddHasVoiceElement(div, div.dataset.has_ranger_voice, "ranger");
+            this.AddHasVoiceElement(div, div.dataset.has_wingdiver_voice, "wingdiver");
             fragment.appendChild(div);
         });
 
@@ -76,13 +76,21 @@ class FixedPhrase {
     /*
         音声付き定型文であればアイコン(DOM)を追加する
     */
-    AddHasVoiceElement(fixed_phrase_element, has_voice) {
+    AddHasVoiceElement(fixed_phrase_element, has_voice, soldier_name) {
         if(has_voice != "true") {
             return;
         }
         const has_voice_element = document.createElement("span");
         has_voice_element.textContent = "volume_up";
         has_voice_element.classList.add("material-icons");
+
+        if(soldier_name == "ranger") {
+            has_voice_element.classList.add("has_ranger_voice");
+        }
+        else if(soldier_name == "wingdiver") {
+            has_voice_element.classList.add("has_wingdiver_voice");
+        }
+
         fixed_phrase_element.appendChild(has_voice_element);
     }
 }
