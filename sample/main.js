@@ -13,8 +13,8 @@ window.addEventListener("DOMContentLoaded", () => {
         fpg2_element.disabled = e.target.value == 0;
         fpg2_element.value = 0;
 
-        for(let i = 0; i < hoge2.options.length; i++) {
-            const item = hoge2.options[i];
+        for(let i = 0; i < fpg2_element.options.length; i++) {
+            const item = fpg2_element.options[i];
 
             if(item.dataset.group1_id == e.target.value) {
                 item.style.display = "block"
