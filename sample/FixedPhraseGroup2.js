@@ -52,7 +52,7 @@ class FixedPhraseGroup2 {
     #CreateOptionElement(data) {
         const option = document.createElement("option");
         option.value = data.ID;
-        option.dataset.group1_id = data.GROUP1_ID;
+        option.dataset.group1_id = data.Group1_ID;
         option.textContent = data.Name;
         return option;
     }
@@ -62,7 +62,7 @@ class FixedPhraseGroup2 {
     */
     ConvertCSVToObject(csv_line) {
         return {
-            GROUP1_ID   : csv_line[0],
+            Group1_ID   : csv_line[0],
             ID          : csv_line[1],
             Name        : csv_line[2]
         };
