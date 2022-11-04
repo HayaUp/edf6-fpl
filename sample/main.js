@@ -9,6 +9,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const fpg2_element = document.getElementById("FixedPhraseGroup2");
     const fp_element = document.getElementById("FixedPhrase");
 
+    const fpg1_items = fpg1.ReadItems();
+    fpg1.SetOptionInSelect(fpg1_items);
+
     fpg1_element.addEventListener("change", (e) => {
         fpg2_element.disabled = e.target.value == 0;
         fpg2_element.value = 0;

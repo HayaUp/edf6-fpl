@@ -6,7 +6,6 @@
 class FixedPhraseGroup1 {
     constructor() {
         Object.defineProperty(this, "CSV_FILE_PATH", {value : "./data/fixed_phrase_group1.csv"});
-        this.SetOptions();
     }
 
     /*
@@ -24,21 +23,46 @@ class FixedPhraseGroup1 {
     }
 
     /*
-        読み込んだCSVファイルの内容をselectに追加
+        selectにoptionを指定する
     */
-    async SetOptions() {
-        const items = await this.ReadItems();
-        const fragment = document.createDocumentFragment();
-        items.forEach((item, index) => {
-            if(index == 0) {
-                return;
-            }
-            const option = document.createElement("option");
-            option.value = isNaN(item[0]) ? item[0] : parseInt(item[0]);
-            option.textContent = item[1];
-            fragment.appendChild(option);
-        });
+    SetOptionInSelect(csv_lines) {
+        if(csv_lines == null) {
+            return;
+        }
 
-        document.getElementById("FixedPhraseGroup1").append(fragment);
+        csv_lines.then((items) => {
+            const fragment = document.createDocumentFragment();
+            items.forEach((item, index) => {
+                if(index == 0) {
+                    return;
+                }
+
+                const data = this.ConvertCSVToObject(item);
+                const option = this.#CreateOptionElement(data);
+                fragment.appendChild(option);
+            });
+
+            document.getElementById("FixedPhraseGroup1").append(fragment);
+        });
+    }
+
+    /*
+        selectに追加するoptionを作る
+    */
+    #CreateOptionElement(data) {
+        const option = document.createElement("option");
+        option.value = data.ID;
+        option.textContent = data.Name;
+        return option;
+    }
+
+    /*
+        読み込んだCSVをオブジェクトへ変換する
+    */
+    ConvertCSVToObject(csv_line) {
+        return {
+            ID      : csv_line[0],
+            Name    : csv_line[1]
+        };
     }
 }
