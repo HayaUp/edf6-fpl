@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const fpg1_items = fpg1.ReadItems();
     fpg1.SetOptionInSelect(fpg1_items);
+    fpg1.SetContentInFixedPhrase(fpg1_items);
 
     fpg1_element.addEventListener("change", (e) => {
         fpg2_element.disabled = e.target.value == 0;

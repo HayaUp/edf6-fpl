@@ -65,4 +65,40 @@ class FixedPhraseGroup1 {
             Name    : csv_line[1]
         };
     }
+
+    /*
+        読み込んだCSVの内容を定型文に指定する
+    */
+    SetContentInFixedPhrase(csv_lines) {
+        if(csv_lines == null) {
+            return;
+        }
+
+        csv_lines.then((items) => {
+            const fragment = document.createDocumentFragment();
+            const ul = document.createElement("ul");
+            items.forEach((item, index) => {
+                if(index == 0) {
+                    return;
+                }
+
+                const data = this.ConvertCSVToObject(item);
+                const li = this.#CreateListItemElement(data);
+                ul.appendChild(li);
+            });
+
+            fragment.appendChild(ul);
+            document.getElementById("FixedPhrase").append(fragment);
+        });
+    }
+
+    /*
+        ulに追加するliを作る
+    */
+    #CreateListItemElement(data) {
+        const li = document.createElement("li");
+        li.dataset.group1_id = data.ID;
+        li.textContent = data.Name;
+        return li;
+    }
 }
