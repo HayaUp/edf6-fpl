@@ -43,6 +43,7 @@ class FixedPhrase {
         });
 
         document.getElementById("FixedPhrase").append(fragment);
+        document.getElementById("SearchResult").textContent = this.CreateSearchResultMessage(items);
     }
 
     /*
@@ -92,5 +93,14 @@ class FixedPhrase {
         }
 
         fixed_phrase_element.appendChild(has_voice_element);
+    }
+
+    /*
+        検索結果の文を作成する
+    */
+    CreateSearchResultMessage(items) {
+        const count_items = items.length - 1;
+        const count_voice = items.filter((item) => item[4] == "1" || item[5] == "1").length;
+        return `定型文は${count_items}個(内、音声付きは${count_voice}個)あります。`;
     }
 }
