@@ -34,6 +34,14 @@ window.addEventListener("DOMContentLoaded", () => {
                 item.style.display = "none";
             }
         }
+
+        // 全ての要素を表示する
+        if(e.target.value == 0) {
+            const targets = document.querySelectorAll("li");
+            targets.forEach((target) => {
+                target.style.display = "list-item";
+            });
+        }
     });
 
     fpg2_element.addEventListener("change", (e) => {
