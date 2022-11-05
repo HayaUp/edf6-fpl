@@ -77,7 +77,7 @@ class FixedPhrase {
         const li = document.createElement("li");
         li.dataset.group1_id = fp.FixedPhraseGroup1ID;
         li.dataset.group2_id = fp.FixedPhraseGroup2ID;
-        li.dataset.id = fp.id;
+        li.dataset.id = fp.ID;
         li.textContent = fp.Name;
         li.dataset.has_ranger_voice = fp.HasRangerVoice;
         li.dataset.has_wingdiver_voice = fp.HasWingDiverVoice;
