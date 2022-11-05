@@ -35,4 +35,19 @@ window.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+
+    fpg2_element.addEventListener("change", (e) => {
+        const group1_id = fpg1_element.value;
+        const group2_id = e.target.value;
+
+        const targets = document.querySelectorAll(`li[data-group1_id="${group1_id}"],li[data-group2_id="${group2_id}"]`);
+        targets.forEach((target) => {
+            target.style.display = "list-item";
+        });
+
+        const not_targets = document.querySelectorAll(`li[data-group1_id]:not(li[data-group1_id="${group1_id}"]),li[data-group2_id]:not(li[data-group2_id="${group2_id}"])`);
+        not_targets.forEach((not_target) => {
+            not_target.style.display = "none";
+        });
+    });
 });
