@@ -58,4 +58,28 @@ window.addEventListener("DOMContentLoaded", () => {
             not_target.style.display = "none";
         });
     });
+
+    // レンジャーの音声付き定型文の表示・非表示を処理する
+    const HasRangerVoice = document.getElementById("HasRangerVoice");
+    HasRangerVoice.addEventListener("change", (e) => {
+        const checked = e.target.checked;
+
+        if(checked) {
+            const targets = document.querySelectorAll(`li[data-has_ranger_voice="${checked}"]`);
+            targets.forEach((target) => {
+                target.style.display = "list-item";
+            });
+
+            const not_targets = document.querySelectorAll(`li[data-has_ranger_voice]:not([data-has_ranger_voice="${checked}"])`);
+            not_targets.forEach((not_target) => {
+                not_target.style.display = "none";
+            });
+        }
+        else {
+            const targets = document.querySelectorAll("li[style='display: none;']");
+            targets.forEach((target) => {
+                target.style.display = "list-item";
+            });
+        }
+    });
 });
