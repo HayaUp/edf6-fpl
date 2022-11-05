@@ -26,24 +26,35 @@ class FixedPhrase {
     /*
         読み込んだCSVファイルの内容を検索結果に追加
     */
-    async SetItems() {
-        const items = await this.ReadItems();
-        const fragment = document.createDocumentFragment();
-        items.forEach((item, index) => {
-            if(index == 0) {
-                return;
-            }
+    async SetItems(csv_lines) {
+        if(csv_lines == null) {
+            return;
+        }
 
-            const fp = this.ConvertCSVToObject(item);
-            const div = this.CreateFixedPhraseElement(fp);
+        csv_lines.then((items) => {
+            items.forEach((item, index) => {
+                if(index == 0) {
+                    return;
+                }
 
-            this.AddHasVoiceElement(div, div.dataset.has_ranger_voice, "ranger");
-            this.AddHasVoiceElement(div, div.dataset.has_wingdiver_voice, "wingdiver");
-            fragment.appendChild(div);
+                const fp = this.ConvertCSVToObject(item);
+                const li = this.CreateFixedPhraseElement(fp);
+
+                this.AddHasVoiceElement(li, li.dataset.has_ranger_voice, "ranger");
+                this.AddHasVoiceElement(li, li.dataset.has_wingdiver_voice, "wingdiver");
+
+                const target = document.querySelector(`li[data-group1_id="${fp.FixedPhraseGroup1ID}"][data-group2_id="${fp.FixedPhraseGroup2ID}"]`);
+
+                if(target.childElementCount == 0) {
+                    const ul = document.createElement("ul");
+                    ul.appendChild(li);
+                    target.appendChild(ul);
+                }
+                else {
+                    target.querySelector("ul").appendChild(li);
+                }
+            });
         });
-
-        document.getElementById("FixedPhrase").append(fragment);
-        document.getElementById("SearchResult").textContent = this.CreateSearchResultMessage(items);
     }
 
     /*
@@ -64,14 +75,14 @@ class FixedPhrase {
         定型文DOMを作成する
     */
     CreateFixedPhraseElement(fp) {
-        const div = document.createElement("div");
-        div.dataset.group1_id = fp.FixedPhraseGroup1ID;
-        div.dataset.group2_id = fp.FixedPhraseGroup2ID;
-        div.dataset.id = fp.id;
-        div.textContent = fp.Name;
-        div.dataset.has_ranger_voice = fp.HasRangerVoice;
-        div.dataset.has_wingdiver_voice = fp.HasWingDiverVoice;
-        return div;
+        const li = document.createElement("li");
+        li.dataset.group1_id = fp.FixedPhraseGroup1ID;
+        li.dataset.group2_id = fp.FixedPhraseGroup2ID;
+        li.dataset.id = fp.id;
+        li.textContent = fp.Name;
+        li.dataset.has_ranger_voice = fp.HasRangerVoice;
+        li.dataset.has_wingdiver_voice = fp.HasWingDiverVoice;
+        return li;
     }
 
     /*
